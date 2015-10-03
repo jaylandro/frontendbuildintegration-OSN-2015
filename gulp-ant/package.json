@@ -1,0 +1,28 @@
+{
+  "name": "osn-theme",
+  "version": "1.0.0",
+  "description": "OSN Gulp and Ant",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaylandro/frontin-OSN-2015.git"
+  },
+  "keywords": [
+    "osn",
+    "gulp",
+    "theme"
+  ],
+  "author": "James Landro",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "*"
+  },
+  "devDependencies": {
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-utils": "0.0.4",
+    "minimist": "^1.2.0"
+  }
+}

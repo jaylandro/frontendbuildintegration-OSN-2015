@@ -1,0 +1,45 @@
+@import "variables";
+
+body {
+  font-family: 'Helvetica', verdana, sans-serif;
+}
+
+.menubar {
+  list-style: none;
+  font-size: 14px;
+  background: white;
+  padding: 0 10px;
+
+  > li {
+    display: inline-block;
+    position: relative;
+  }
+}
+.menubar-item {
+  color: black;
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+
+  &:hover, .is-selected & { background: #29a7f5; color: white; }
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: white;
+  list-style: none;
+  width: 15em;
+  padding: 10px 0;
+
+  .is-selected & { display: block; }
+}
+.menu-item {
+  color: black;
+  display: block;
+  padding: 8px 20px;
+  text-decoration: none;
+
+  &:hover { background: #29a7f5; color: white; }
+}
