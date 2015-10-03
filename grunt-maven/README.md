@@ -1,5 +1,5 @@
 # Maven-grunt
-An example of a grunt build file for a cmaven project. 
+An example of a grunt build file for a Maven project. 
 
 #### Included in this gruntfile:
 * File sync to Tomcat on save
