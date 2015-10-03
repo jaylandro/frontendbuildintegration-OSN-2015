@@ -73,7 +73,7 @@ module.exports = function(grunt) {
         files: {
           src: [
             '<%= globalConfig.src  %>/css/_variables.scss', 
-            '<%= globalConfig.src  %>index.html'
+            'index.html'
             ]
         }
       },
