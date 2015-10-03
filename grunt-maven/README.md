@@ -14,4 +14,4 @@ An example of a grunt build file for a Maven project.
 * Type 'grunt'
 * If utilizing the 'grunt watch' task, edit the tomcatTheme directory to point to your theme's directory in Tomcat
 
-We are using this in conjuction with a Maven frontend build task. If you have any questions, feel free to reach out.
+We are using this in conjuction with eirslett's great [frontend build plugin](https://github.com/eirslett/frontend-maven-plugin). If you have any questions, feel free to reach out.
