@@ -1,5 +1,5 @@
 {
-  "name": "LRYTheme",
+  "name": "OSNTheme",
   "version": "1.0.0-SNAPSHOT",
   "private": true,
   "devDependencies": {
@@ -8,6 +8,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-svg-sprite": "^1.1.1",

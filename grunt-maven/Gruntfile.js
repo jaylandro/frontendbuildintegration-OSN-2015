@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
 
   var globalConfig = {
-      src: 'src/main/webapp',
+      src: 'src',
+      dist: 'dist',
       tomcatTheme: '/Applications/liferay-developer-studio/liferay-portal-6.2-ee-sp10/tomcat-7.0.42/webapps/lry-theme',
       pkg: grunt.file.readJSON('package.json')
   };
@@ -25,10 +26,33 @@ module.exports = function(grunt) {
               '<%= grunt.template.today("yyyy-mm-dd") %> */ buildVersion = "<%= pkg.version %>";'
       },
       build: {
-          src: '<%= globalConfig.src  %>/js/modules/**/*.js',
-          dest: '<%= globalConfig.src  %>/js/global.min.js'
+          src: '<%= globalConfig.src %>/js/**/*.js',
+          dest: '<%= globalConfig.dist %>/js/global.min.js'
       }
     },
+
+    /**
+     * Run the SASS preprocessor
+     */
+
+    sass: {                             
+      dev: {                           
+        options: {                      
+          style: 'expanded'
+        },
+        files: {                         
+          'dist/css/style.css': 'src/css/style.scss'
+        }
+      },
+      dist: {                           
+        options: {                      
+          style: 'compressed'
+        },
+        files: {                         
+          'dist/css/style.css': 'src/css/style.scss'
+        }
+      }
+    }, 
 
     /**
      *  Dev configuration appends version number to all javascript and image embeds to break client cache on version updates.
@@ -41,7 +65,7 @@ module.exports = function(grunt) {
     cachebreaker: {
       dev: {
         options: {
-            match: ['.svg', '.png', '.js'],
+            match: ['.svg', '.png', '.js', '.css'],
             replacement: function() {
                 return globalConfig.pkg.version.replace(/\.|-/g, '_');
             }
@@ -49,7 +73,7 @@ module.exports = function(grunt) {
         files: {
           src: [
             '<%= globalConfig.src  %>/css/_variables.scss', 
-            '<%= globalConfig.src  %>/templates/portal_normal.ftl'
+            '<%= globalConfig.src  %>index.html'
             ]
         }
       },
@@ -61,7 +85,7 @@ module.exports = function(grunt) {
             }
         },
         files: {
-          src: ['<%= globalConfig.src  %>/css/custom.css']
+          src: ['<%= globalConfig.src  %>/css/style.scss']
         }
       }
     },
@@ -87,10 +111,15 @@ module.exports = function(grunt) {
             }
           },
           shape             : {
+            dimension       : {         // Set maximum dimensions
+                maxWidth    : 64,
+                maxHeight   : 64
+            },
             spacing         : {         
                 padding     : 10,
-            },
+            }
           },
+          symbol            : true  
         }
       }
     },
@@ -105,9 +134,9 @@ module.exports = function(grunt) {
       main: {
         files: [{
           expand: true,
-          cwd: "<%= globalConfig.src  %>",
+          cwd: "<%= globalConfig.src %>",
           src: ["**"],
-          dest: "<%= globalConfig.tomcatTheme  %>",
+          dest: "<%= globalConfig.dist %>",
           pretend: true, 
           verbose: true 
         }]
@@ -135,9 +164,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-cache-breaker');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-svg-sprite');
   grunt.loadNpmTasks('grunt-sync');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify', 'cachebreaker:dev']);
+  grunt.registerTask('default', ['uglify', 'cachebreaker:dev', 'sass:dist']);
 };
