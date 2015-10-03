@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
-    uglify = require('uglify-js'),
+    uglify = require('gulp-uglify'),
     header = require('gulp-header'),
+    concat = require('gulp-concat'),
     livereload = require('gulp-livereload'),
     gutil = require('gulp-load-utils')(['env']);
 
@@ -33,11 +34,11 @@ gulp.task('watch', function() {
 });
 
 gulp.task('compress', function() {
-    console.log(tomcatDir);
     gulp.src('src/js/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest( tomcatDir + '/js/'))
-        .pipe(gulp.dest('js'));
+        .pipe(gulp.dest('js'))
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('updateEntryPointCSS', function() {
